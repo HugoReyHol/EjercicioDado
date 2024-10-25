@@ -1,6 +1,9 @@
 package com.example.ejerciciodado
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,19 +21,45 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val diceRange: IntRange = 1..6
+        val imagen:ImageView = findViewById(R.id.imagenDado)
+        val texto: TextView = findViewById(R.id.textoNumero)
+        val boton: Button = findViewById(R.id.botonTirarDado)
 
-        val randomNumber: Int = diceRange.random()
+        boton.setOnClickListener {
+            val tirada : Int = Dice().roll()
 
-        mostrar_mensaje("$randomNumber")
+            texto.text = "$tirada"
 
-        val myFirstDice = Dice()
+            when (tirada) {
+                1 -> imagen.setBackgroundResource(R.drawable.dice_1)
+                2 -> imagen.setBackgroundResource(R.drawable.dice_2)
+                3 -> imagen.setBackgroundResource(R.drawable.dice_3)
+                4 -> imagen.setBackgroundResource(R.drawable.dice_4)
+                5 -> imagen.setBackgroundResource(R.drawable.dice_5)
+                6 -> imagen.setBackgroundResource(R.drawable.dice_6)
 
-        mostrar_mensaje("${myFirstDice.roll()}")
+            }
 
-        val mySecondDice = Dice(20)
+            /**
+             * BUSCAR COMO SE HACE
+             * imagen.setBackgroundResource(R.drawable.dice_"$tirada")
+             */
 
-        mostrar_mensaje("${mySecondDice.roll()}")
+        }
+
+//        val diceRange: IntRange = 1..6
+//
+//        val randomNumber: Int = diceRange.random()
+//
+//        mostrar_mensaje("$randomNumber")
+//
+//        val myFirstDice = Dice()
+//
+//        mostrar_mensaje("${myFirstDice.roll()}")
+//
+//        val mySecondDice = Dice(20)
+//
+//        mostrar_mensaje("${mySecondDice.roll()}")
 
 
 
